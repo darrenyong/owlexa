@@ -10,7 +10,7 @@ router.get('/test', (req, res) => {
 
 router.post('/play', (req, res) => {
   // Get data needed for signing the request
-  const reqBody = req.body;
+  const reqBody = JSON.stringify(req.body);
   const slackTimestamp = req.headers['x-slack-request-timestamp'];
   const currentTime = Math.floor(new Date().getTime() / 1000);
   // Checks if the request has been sent more than 5 minutes ago
