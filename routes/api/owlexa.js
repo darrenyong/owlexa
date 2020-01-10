@@ -13,10 +13,9 @@ router.post('/play', (req, res) => {
   const reqBody = JSON.stringify(req.body);
   const slackTimestamp = req.headers['x-slack-request-timestamp'];
   const currentTime = Math.floor(new Date().getTime() / 1000);
-  // Checks if the request has been sent more than 5 minutes ago
-  // If so, ignore request
-  if (Math.abs(currentTime - slackTimestamp) > (60 * 5)) {
-    return;
+  // Ignore if the request was sent more than 10 minutes ago
+  if (Math.abs(currentTime - slackTimestamp) > (60 * 10)) {
+    res.status(498).send('Request expired');
   }
 
   const sigBaseString = `v0:${slackTimestamp}:${reqBody}`
