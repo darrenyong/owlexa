@@ -11,6 +11,7 @@ router.get('/test', (req, res) => {
 router.post('/play', (req, res) => {
   // Get data needed for signing the request
   const reqBody = req.body;
+  const slackTimestamp = req.headers['x-slack-request-timestamp'];
 
   // console.log(reqBody);
   return ({
