@@ -1,5 +1,4 @@
 const express = require('express');
-
 const router = express.Router();
 const crypto = require('crypto');
 
@@ -10,14 +9,6 @@ router.get('/test', (req, res) => {
 })
 
 router.post('/play', (req, res) => {
-  // Get data needed for signing the request
-  const reqBody = req.body;
-  const slackTimestamp = req.headers['x-slack-request-timestamp'];
-  const currentTIme = Math.floor(new Date().getTime() / 1000);
-  // Checks if the request has been sent more than 5 minutes ago
-  if (Math.abs(currentTime - slackTimestamp) > (60 * 5)) {
-    return;
-  }
 
   // console.log(reqBody);
   return ({
