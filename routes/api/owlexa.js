@@ -17,6 +17,12 @@ router.post('/play', (req, res) => {
   if (Math.abs(currentTime - slackTimestamp) > (60 * 10)) {
     res.status(498).send('Request expired');
   }
+  // Create Base String and Hash
+  const sigBaseString = `v0:${slackTimestamp}:` + reqBody
+  const mySig = "v0=" + crypto.createHmac('sha256', slackSigningSecret)
+                              .update(sigBaseString)
+                              .digest('hex');
+  const slackSig = req.headers['x-slack-signature'];
 
   const sigBaseString = `v0:${slackTimestamp}:${reqBody}`
   const sigHash = crypto.createHmac('sha256', slackSigningSecret)
