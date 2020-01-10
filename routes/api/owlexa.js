@@ -18,6 +18,8 @@ router.post('/play', (req, res) => {
   if (Math.abs(currentTime - slackTimestamp) > (60 * 5)) {
     return;
   }
+  
+  const reqBaseString = `v0:${slackTimestamp}:${reqBody}`
 
   // console.log(reqBody);
   return ({
