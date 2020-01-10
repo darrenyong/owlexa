@@ -12,16 +12,19 @@ router.post('/play', (req, res) => {
   // Get data needed for signing the request
   const reqBody = req.body;
   const slackTimestamp = req.headers['x-slack-request-timestamp'];
-  const currentTIme = Math.floor(new Date().getTime() / 1000);
+  const currentTime = Math.floor(new Date().getTime() / 1000);
   // Checks if the request has been sent more than 5 minutes ago
   // If so, ignore request
   if (Math.abs(currentTime - slackTimestamp) > (60 * 5)) {
     return;
   }
-  
-  const reqBaseString = `v0:${slackTimestamp}:${reqBody}`
 
-  // console.log(reqBody);
+  const sigBaseString = `v0:${slackTimestamp}:${reqBody}`
+  const sigHash = crypto.createHmac('sha256', slackSigningSecret)
+                        .update(sigBaseString)
+                        .digest('hex');
+
+  console.log(sigHash);
   return ({
     challenge: {}
   });
