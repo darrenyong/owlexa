@@ -9,6 +9,8 @@ router.get('/test', (req, res) => {
 })
 
 router.post('/play', (req, res) => {
+  // Get data needed for signing the request
+  const reqBody = req.body;
 
   // console.log(reqBody);
   return ({
