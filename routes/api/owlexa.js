@@ -24,15 +24,13 @@ router.post('/play', (req, res) => {
                               .digest('hex');
   const slackSig = req.headers['x-slack-signature'];
 
-  const sigBaseString = `v0:${slackTimestamp}:${reqBody}`
-  const sigHash = crypto.createHmac('sha256', slackSigningSecret)
-                        .update(sigBaseString)
-                        .digest('hex');
-
-  console.log(sigHash);
-  return ({
-    challenge: {}
-  });
+  // Compare the generated Hash and the Slack Signature and respond
+  if (crypto.timingSafeEqual(Buffer.from(mySig), Buffer.from(slackSig))) {
+    const challenge = req.body.challenge;
+    res.status(200).send(challenge);
+  } else {
+    res.status(400).send('Could not be verified');
+  }
 })
 
 module.exports = router;
