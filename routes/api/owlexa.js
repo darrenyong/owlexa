@@ -24,6 +24,17 @@ router.post('/play', (req, res) => {
                               .digest('hex');
   const slackSig = req.headers['x-slack-signature'];
 
+  // Message types we don't care about
+  const unwantedTypes = [
+    'bot_message',
+    'message_changed',
+    'message_deleted'
+  ]
+  const messageType = req.body.event.subtype
+  if (unwantedTypes.indexOf(messageType)) {
+    return;
+  }
+
   // Compare the generated Hash and the Slack Signature and respond
   if (crypto.timingSafeEqual(Buffer.from(mySig), Buffer.from(slackSig))) {
     const challenge = req.body.challenge;
