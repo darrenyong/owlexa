@@ -31,7 +31,7 @@ router.post('/play', (req, res) => {
     'message_deleted'
   ]
   const messageType = req.body.event.subtype
-  if (unwantedTypes.indexOf(messageType)) {
+  if (unwantedTypes.includes(messageType)) {
     return;
   }
 
@@ -45,6 +45,7 @@ router.post('/play', (req, res) => {
       const message = req.body.event.text;
 
       const match = alexaRegex.exec(message);
+      return;
     }
   } else {
     res.status(400).send('Could not be verified');
