@@ -28,8 +28,16 @@ router.post('/play', (req, res) => {
   if (crypto.timingSafeEqual(Buffer.from(mySig), Buffer.from(slackSig))) {
     const challenge = req.body.challenge;
     res.status(200).send(challenge);
+    
+    if (req.body.event.type == 'message') {
+      const alexaRegex = /\b(Alexa|Owlexa)\b.*play (.*[a-zA-Z].*) by ([a-zA-Z].*)/gi;
+      const message = req.body.event.text;
+
+      const match = alexaRegex.exec(message);
+    }
   } else {
     res.status(400).send('Could not be verified');
+    return;
   }
 })
 
