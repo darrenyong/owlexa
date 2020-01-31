@@ -12,6 +12,7 @@ router.get('/test', (req, res) => {
   res.json({ msg: 'This test route is working' });
 })
 
+// Webhook - WIP 
 router.post('/play', (req, res) => {
   // Get data needed for signing the request
   const reqBody = JSON.stringify(req.body);
@@ -57,6 +58,7 @@ router.post('/play', (req, res) => {
   }
 })
 
+// Slash Command
 router.post('/slashPlay', (req, res) => {
   // Logic to grab artist and song name
   const alexaRegex = /play (.*[a-zA-Z].*) by ([a-zA-Z].*)/ig;
