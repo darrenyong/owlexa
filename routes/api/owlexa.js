@@ -3,6 +3,8 @@ const router = express.Router();
 const crypto = require('crypto');
 
 const slackSigningSecret = process.env.SLACK_SIGNING_SECRET;
+const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
+const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
 router.get('/test', (req, res) => {
   res.json({ msg: 'This test route is working' });
