@@ -75,6 +75,12 @@ router.post('/slashPlay', (req, res) => {
       Authorization: `Basic ${spotifySecret}`
     }
   };
+
+  // Call Spotify API to retrieve song
+  request.post(spotifyAuthOptions, (err, httpResponse, body) => {
+    const tempAccessToken = JSON.parse(body).access_token;
+
+  });
 })
 
 module.exports = router;
