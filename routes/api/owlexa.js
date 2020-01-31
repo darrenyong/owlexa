@@ -63,6 +63,7 @@ router.post('/slashPlay', (req, res) => {
   const phrase = req.body.text;
   const match = alexaRegex.exec(phrase);
   const songQuery = `${match[1]} ${match[2]}`;
+  const slackChannel = req.body.channel_id;
 
   // Obtain temporary Spotify Bearer token
   const spotifySecret = Buffer.from(`${spotifyClientId}:${spotifyClientSecret}`).toString('base64');
