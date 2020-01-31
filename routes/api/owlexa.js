@@ -57,4 +57,10 @@ router.post('/play', (req, res) => {
   }
 })
 
+router.post('/slashPlay', (req, res) => {
+  // Logic to grab artist and song name
+  const alexaRegex = /play (.*[a-zA-Z].*) by ([a-zA-Z].*)/ig;
+
+})
+
 module.exports = router;
