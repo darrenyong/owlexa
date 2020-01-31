@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const request = require('request');
 
 const slackSigningSecret = process.env.SLACK_SIGNING_SECRET;
+const slackAccessToken = process.env.SLACK_ACCESS_TOKEN;
 const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
 const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
