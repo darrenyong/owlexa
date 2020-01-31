@@ -8,10 +8,6 @@ const slackAccessToken = process.env.SLACK_ACCESS_TOKEN;
 const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
 const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
-router.get('/test', (req, res) => {
-  res.json({ msg: 'This test route is working' });
-})
-
 // Webhook - WIP 
 router.post('/play', (req, res) => {
   // Get data needed for signing the request
