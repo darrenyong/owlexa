@@ -95,6 +95,16 @@ router.post('/slashPlay', (req, res) => {
     request(spotifyGetOptions, (err, httpResponse, body) => {
       const searchResults = JSON.parse(body)
       const returnedSong = searchResults.tracks.items[0].id;
+      const messageOptions = {
+        url: "https://slack.com/api/chat.postMessage",
+        form: {
+          channel: slackChannel,
+          text: `https://open.spotify.com/track/${returnedSong}`
+        },
+        headers: {
+          Authorization: `Bearer ${slackAccessToken}`
+        }
+      };
     });
   });
 })
