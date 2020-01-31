@@ -105,6 +105,11 @@ router.post('/slashPlay', (req, res) => {
           Authorization: `Bearer ${slackAccessToken}`
         }
       };
+
+      request.post(messageOptions, (err, httpResponse, body) => {
+        res.status(200).json({ 'response_type': 'in_channel' });
+        return;
+      })
     });
   });
 })
