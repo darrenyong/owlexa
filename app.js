@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.get('/', (req, res) => {
-  res.json( {msg: 'Hello World'} );
+  res.json( {msg: 'This is Owlexa'} );
 })
 
 app.use('/owlexa', owlexa);
