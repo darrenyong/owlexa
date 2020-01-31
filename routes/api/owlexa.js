@@ -64,6 +64,17 @@ router.post('/slashPlay', (req, res) => {
   const match = alexaRegex.exec(phrase);
   const songQuery = `${match[1]} ${match[2]}`;
 
+  // Obtain temporary Spotify Bearer token
+  const spotifySecret = Buffer.from(`${spotifyClientId}:${spotifyClientSecret}`).toString('base64');
+  const spotifyAuthOptions = {
+    url: "https://accounts.spotify.com/api/token",
+    form: {
+      grant_type: 'client_credentials'
+    },
+    headers: {
+      Authorization: `Basic ${spotifySecret}`
+    }
+  };
 })
 
 module.exports = router;
