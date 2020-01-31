@@ -79,6 +79,17 @@ router.post('/slashPlay', (req, res) => {
   // Call Spotify API to retrieve song
   request.post(spotifyAuthOptions, (err, httpResponse, body) => {
     const tempAccessToken = JSON.parse(body).access_token;
+    const spotifyGetOptions = {
+      url: "https://api.spotify.com/v1/search",
+      qs: {
+        q: songQuery,
+        type: 'track',
+        limit: 1,
+      },
+      headers: {
+        Authorization: `Bearer ${tempAccessToken}`
+      }
+    };
 
   });
 })
