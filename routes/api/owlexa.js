@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const crypto = require('crypto');
+const request = require('request');
 
 const slackSigningSecret = process.env.SLACK_SIGNING_SECRET;
 const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
