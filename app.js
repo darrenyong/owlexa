@@ -19,4 +19,5 @@ app.get('/', (req, res) => {
   res.json( {msg: 'This is Owlexa'} );
 })
 
+app.use('/github', github);
 app.use('/owlexa', owlexa);
