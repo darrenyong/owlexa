@@ -13,6 +13,18 @@ router.post('/sendPR', (req, res) => {
   // Check if it's merged
   const prAction = resPayload.action;
   const prMergeStatus = pr.merged;
+
+  // Info for message
+  const prNum = resPayload.number;
+  const prAuthor = pr.user.login;
+  const prUrl = pr.url;
+  const prTitle = pr.title;
+  
+  if (prAction == 'closed' && prMergeStatus) {
+    console.log('This only fires when merged');
+  }
+  
+  // console.log(prAuthor, prNum, prAction, prMergeStatus, prUrl, prTitle);
 })
 
 module.exports = router;
