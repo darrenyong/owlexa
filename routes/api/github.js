@@ -27,7 +27,7 @@ router.post('/sendPR', (req, res) => {
     const prMessageOptions = {
       url: "https://slack.com/api/chat.postMessage",
       form: {
-        channel: `CS5CNSD99`,
+        channel: slackPrChannel,
         type: "mrkdwn",
         text: `*<${prUrl}|Pull Request #${prNum} has just been merged by ${prAuthor}>* \n *Title*: ${prTitle}`
       },
