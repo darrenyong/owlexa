@@ -63,8 +63,6 @@ router.post('/slashPlay', (req, res) => {
   const songQuery = `${match[1]} ${match[2]}`;
   const slackChannel = req.body.channel_id;
 
-  console.log(slackChannel);
-
   // Obtain temporary Spotify Bearer token
   const spotifySecret = Buffer.from(`${spotifyClientId}:${spotifyClientSecret}`).toString('base64');
   const spotifyAuthOptions = {
