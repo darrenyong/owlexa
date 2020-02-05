@@ -22,12 +22,24 @@ router.post('/sendPR', (req, res) => {
   const prAuthor = pr.user.login;
   const prUrl = pr.html_url;
   const prTitle = pr.title;
-  
+
   if (prAction == 'closed' && prMergeStatus) {
-    console.log('This only fires when merged');
+    const prMessageOptions = {
+      url: "https://slack.com/api/chat.postMessage",
+      form: {
+        channel: `CS5CNSD99`,
+        type: "mrkdwn",
+        text: `*<${prUrl}|Pull Request #${prNum} has just been merged by ${prAuthor}>* \n *Title*: ${prTitle}`
+      },
+      headers: {
+        Authorization: `Bearer ${slackPrAccessToken}`
+      }
+    };
+    
+    request.post(prMessageOptions, (err, httpResponse, body) => {
+      res.status(200);
+    })
   }
-  
-  // console.log(prAuthor, prNum, prAction, prMergeStatus, prUrl, prTitle);
 })
 
 module.exports = router;
