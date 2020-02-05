@@ -20,7 +20,7 @@ router.post('/sendPR', (req, res) => {
   // Info for message
   const prNum = resPayload.number;
   const prAuthor = pr.user.login;
-  const prUrl = pr.url;
+  const prUrl = pr.html_url;
   const prTitle = pr.title;
   
   if (prAction == 'closed' && prMergeStatus) {
