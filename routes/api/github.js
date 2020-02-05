@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const request = require("request");
 
+const slackPrAccessToken = process.env.SLACK_PR_ACCESS_TOKEN;
+const slackPrChannel = process.env.SLACK_PR_CHANNEL;
+
 router.get('/test', (req, res) => {
   res.json({ msg: 'This is working' })
 })
